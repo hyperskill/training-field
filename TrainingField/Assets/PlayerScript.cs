@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.ProBuilder;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
+using Slider = UnityEngine.UI.Slider;
 
 public class PlayerScript : MonoBehaviour
 {
     public CharacterController cCont;
+    public Canvas menuCanvas;
+    public GameObject menuPanel;
+    
+    public Slider speedSlider;
 
-    public float speed = 12f;
+    private const float DefaultSpeed = 12f;
+
+    public float speed = DefaultSpeed;
     public float gravity = -9.81f  * 2f;
     public float jumpHeight = 3f;
 
     private Vector3 velocity;
-    
+    private bool isPaused = false;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +32,31 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        {
+            isPaused = true;
+            print("Paused");
+            //menuCanvas.enabled = true;
+            menuPanel.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+        } 
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            isPaused = false;
+            print("Resumed");
+            //menuCanvas.enabled = false;
+            menuPanel.SetActive(false);
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (isPaused)
+        {
+            //SliderUpdater();
+            return;
+        }
+        
         //Ground Check?
         
         float x = Input.GetAxis("Horizontal");
@@ -39,5 +74,16 @@ public class PlayerScript : MonoBehaviour
         
         velocity.y += gravity * Time.deltaTime;
         cCont.Move(velocity * Time.deltaTime);
+    }
+
+    private void SliderUpdater()
+    {
+        speed = DefaultSpeed * speedSlider.value;
+    }
+
+    public void SpeedSliderListener(System.Single speedSlideVal)
+    {
+        speed = DefaultSpeed * speedSlider.value;
+        print("Slider updated.");
     }
 }
