@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Principal;
@@ -86,4 +87,5 @@ public class PlayerScript : MonoBehaviour
         speed = DefaultSpeed * speedSlider.value;
         print("Slider updated.");
     }
+    
 }

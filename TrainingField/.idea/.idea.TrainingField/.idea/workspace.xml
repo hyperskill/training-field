@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/MouseLook.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/targetScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -66,7 +67,9 @@
       <option name="presentableId" value="Default" />
       <updated>1654860388412</updated>
       <workItem from="1654860412938" duration="1969000" />
-      <workItem from="1654988085602" duration="4174000" />
+      <workItem from="1654988085602" duration="5951000" />
+      <workItem from="1655206197662" duration="1495000" />
+      <workItem from="1655256405409" duration="1625000" />
     </task>
     <servers />
   </component>

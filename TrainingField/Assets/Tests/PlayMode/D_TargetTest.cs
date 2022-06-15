@@ -87,7 +87,7 @@ public class D_TargetTest
         
         if (Vector3.Distance(hit.point,hit2.point)>0.5f)
         {
-            Assert.Fail("Target should be spawned closer to a wall, like it is hanging on a wall");
+            Assert.Fail($"Target should be spawned closer to a wall, like it is hanging on a wall Dist={Vector3.Distance(hit.point,hit2.point)}");
         }
     }
 
