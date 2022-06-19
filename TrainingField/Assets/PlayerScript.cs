@@ -112,9 +112,9 @@ public class PlayerScript : MonoBehaviour
         print("Slider updated.");
     }
 
-    public void IncrementScore()
+    public void IncrementScore(int points)
     {
-        score += 10;
+        score += points;
         scoreText.text = score.ToString();
         numSecs = totalTime;
 
