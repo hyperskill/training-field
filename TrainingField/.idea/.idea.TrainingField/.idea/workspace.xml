@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/MouseLook.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Tests/PlayMode/E_ScoreLoseTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/targetScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -70,6 +71,11 @@
       <workItem from="1654988085602" duration="5951000" />
       <workItem from="1655206197662" duration="1495000" />
       <workItem from="1655256405409" duration="1625000" />
+      <workItem from="1655379106819" duration="1602000" />
+      <workItem from="1655380737213" duration="399000" />
+      <workItem from="1655429558109" duration="4113000" />
+      <workItem from="1655465232084" duration="1431000" />
+      <workItem from="1655661358320" duration="640000" />
     </task>
     <servers />
   </component>

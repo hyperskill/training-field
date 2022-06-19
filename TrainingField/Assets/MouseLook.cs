@@ -39,6 +39,6 @@ public class MouseLook : MonoBehaviour
     public void SenseSliderListener(System.Single speedSlideVal)
     {
         mouseSensitivity = DefaultMouseSensitivity * sensitivitySlider.value;
-        print("Slider updated.");
+        //print("Slider updated.");
     }
 }

@@ -30,17 +30,20 @@ public static class PMHelper
             rect.anchorMin.x > 1 || rect.anchorMin.x < 0 ||
             rect.anchorMin.y > 1 || rect.anchorMin.y < 0)
         {
+            Debug.Log("fail 1");
             return false;//Incorrect anchors
         }
 
         if (rect.anchorMin.x >= rect.anchorMax.x ||
             rect.anchorMin.y >= rect.anchorMax.y)
         {
+            Debug.Log("fail 2");
             return false;//Incorrect anchors
         }
 
         if (rect.offsetMin != Vector2.zero || rect.offsetMax != Vector2.zero)
         {
+            Debug.Log("fail 3");
             return false;//Might be troubles with changing resolution
         }
         

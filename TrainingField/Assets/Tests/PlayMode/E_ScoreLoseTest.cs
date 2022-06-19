@@ -166,7 +166,7 @@ public class E_ScoreLoseTest
             yield return new WaitForSeconds(0.1f);
             if (!(timerImg.fillAmount < amWas))
             {
-                Assert.Fail("\"Timer\"'s image fill amount should decrease with time");
+                Assert.Fail($"\"Timer\"'s image fill amount should decrease with time");
             }
             amWas = timerImg.fillAmount;
         }
