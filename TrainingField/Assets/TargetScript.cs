@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TargetScript : MonoBehaviour
 {
     public GameObject targetUi;
+    public Image TimerImg;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +18,16 @@ public class TargetScript : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        var position = new Vector3(Random.Range(21.2f, 21.9f), Random.Range(9f, 9.4f), -0.55f);
-        Instantiate(targetUi, position, transform.rotation);
+        var position = new Vector3(Random.Range(5f, 8.2f), Random.Range(6f, 8f), -0.55f);
         Destroy(gameObject);
+        TimerImg.fillAmount = 1;
+        TimerImg.Rebuild(CanvasUpdate.Prelayout);
+        var player = FindObjectOfType<PlayerMovement>();
+        if (player != null)
+        {
+            player.IncrementScore();
+        }
+        
+        Instantiate(targetUi, position, transform.rotation);
     }
 }

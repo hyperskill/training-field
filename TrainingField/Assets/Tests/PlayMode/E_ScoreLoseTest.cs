@@ -188,7 +188,7 @@ public class E_ScoreLoseTest
             GameObject target = PMHelper.FindObjectWithLayer("Target");
             yield return null;
             ss.shoot(target.transform.position);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);//I am change this 0.1 -> 0.2
             if (GameObject.Find("Timer").GetComponent<Image>().fillAmount < amWas)
             {
                 Assert.Fail("Timer's fill amount should increase to maximum when new target was spawned");
