@@ -126,4 +126,23 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.SetInt("maxScore", score);
         }
     }
+    public void IncrementScore(int points)
+    {
+        score += points;
+        scoreText.text = score.ToString();
+        numSecs = totalTime;
+
+        if (PlayerPrefs.HasKey("maxScore"))
+        {
+            var oldmax = PlayerPrefs.GetInt("maxScore");
+            if (score > oldmax)
+            {
+                PlayerPrefs.SetInt("maxScore", score);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("maxScore", score);
+        }
+    }
 }
