@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class movement : MonoBehaviour
 {
@@ -21,15 +22,19 @@ public class movement : MonoBehaviour
     private bool isGrounded;
 
     public float jumpHeight = 3f;
+
+    public Slider speedSlider;
     // Start is called before the first frame update
     void Start()
     {
-        
+     
     }
 
     // Update is called once per frame
     void Update()
     {
+        speedSlider.onValueChanged.AddListener(delegate {valueChanged();});
+        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -50,5 +55,10 @@ public class movement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void valueChanged()
+    {
+        speed = 12f * speedSlider.value;
     }
 }
