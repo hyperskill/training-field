@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,10 +26,28 @@ public class movement : MonoBehaviour
     public float jumpHeight = 3f;
 
     public Slider speedSlider;
+
+    private List<GameObject> targets;
+    private int targetIdx;
+    
+    public Camera fpsCam;
+    float range = 100f;
+    
     // Start is called before the first frame update
     void Start()
     {
-     
+        targets = new List<GameObject>();
+        targetIdx = 0;
+
+        foreach (var obj in GameObject.FindGameObjectsWithTag("Target"))
+        {
+            targets.Add(obj);
+        }
+
+        for (int i = 1; i < targets.Count; i++)
+        {
+            targets[i].SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -53,6 +73,11 @@ public class movement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            OnClicked();
+        }
+        
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -60,5 +85,29 @@ public class movement : MonoBehaviour
     void valueChanged()
     {
         speed = 12f * speedSlider.value;
+    }
+
+    void OnClicked()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        {
+            GameObject gameObjectHit = hit.transform.gameObject;
+
+            if (gameObjectHit.CompareTag("Target"))
+            {
+                gameObjectHit.SetActive(false);
+                if (targetIdx + 1 < targets.Count)
+                {
+                    targetIdx += 1;
+                }
+                else
+                {
+                    targetIdx = 0;
+                }
+                targets[targetIdx].SetActive(true);
+            }
+        }
     }
 }
