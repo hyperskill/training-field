@@ -163,7 +163,7 @@ public class E_ScoreLoseTest
         
         for (int i = 0; i < 10; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             if (!(timerImg.fillAmount < amWas))
             {
                 Assert.Fail("\"Timer\"'s image fill amount should decrease with time");

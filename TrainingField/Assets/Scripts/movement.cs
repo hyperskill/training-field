@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class movement : MonoBehaviour
@@ -32,12 +33,24 @@ public class movement : MonoBehaviour
     
     public Camera fpsCam;
     float range = 100f;
+
+    public Text scoreText;
+    public Text maxScoreText;
     
+    private int score;
+
+    private int maxScore;
+
+    private float timeRemaining = 10f;
+
+    public GameObject timer;
     // Start is called before the first frame update
     void Start()
     {
         targets = new List<GameObject>();
         targetIdx = 0;
+        score = 0;
+        maxScore = 0;
 
         foreach (var obj in GameObject.FindGameObjectsWithTag("Target"))
         {
@@ -53,6 +66,16 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+            timer.GetComponent<Image>().fillAmount = timeRemaining / 3f;
+        }
+        else if (timeRemaining <= 0)
+        {
+            SceneManager.LoadScene("Application");
+        }
+        
         speedSlider.onValueChanged.AddListener(delegate {valueChanged();});
         
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -95,9 +118,20 @@ public class movement : MonoBehaviour
         {
             GameObject gameObjectHit = hit.transform.gameObject;
 
-            if (gameObjectHit.CompareTag("Target"))
+            if (gameObjectHit.CompareTag("Target") && gameObjectHit != null)
             {
                 gameObjectHit.SetActive(false);
+                score += 10;
+                timeRemaining = 10f;
+                
+                if (score > maxScore)
+                {
+                    maxScore = score;
+                    maxScoreText.text = $"{maxScore}";
+                }
+                
+                scoreText.text = $"{score}";
+                
                 if (targetIdx + 1 < targets.Count)
                 {
                     targetIdx += 1;
