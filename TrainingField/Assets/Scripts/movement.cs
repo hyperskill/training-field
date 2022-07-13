@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class movement : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class movement : MonoBehaviour
 
     private int maxScore;
 
-    private float timeRemaining = 10f;
+    private float timeRemaining = 3f;
 
     public GameObject timer;
     // Start is called before the first frame update
@@ -120,9 +121,44 @@ public class movement : MonoBehaviour
 
             if (gameObjectHit.CompareTag("Target") && gameObjectHit != null)
             {
-                gameObjectHit.SetActive(false);
-                score += 10;
-                timeRemaining = 10f;
+                Bounds bounds = gameObjectHit.GetComponent<Collider>().bounds;
+
+                float radius = 0;
+                
+                if (bounds.size.x > bounds.size.y && bounds.size.z > bounds.size.y)
+                {
+                    radius = bounds.size.x/2;
+                }else if (bounds.size.y > bounds.size.x && bounds.size.z > bounds.size.x)
+                {
+                    radius = bounds.size.z/2;
+                }else if (bounds.size.y > bounds.size.z && bounds.size.x > bounds.size.z)
+                {
+                    radius = bounds.size.x/2;
+                }
+                
+                RaycastHit[] hitArray = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward);
+                RaycastHit exact = Array.Find(hitArray, e => e.collider.gameObject.layer == LayerMask.NameToLayer("Target"));
+                
+                float dist = Vector3.Distance(exact.point, bounds.center);
+                
+                int points;
+                
+                if (dist > radius)
+                {
+                    points = 1;
+                }else if(dist/radius>2f/3f)
+                {
+                    points = 3;
+                }else if(dist/radius>1f/6f)
+                {
+                    points = 5;
+                }else
+                {
+                    points = 10;
+                }
+                
+                score += points;
+                timeRemaining = 3f;
                 
                 if (score > maxScore)
                 {
@@ -140,6 +176,8 @@ public class movement : MonoBehaviour
                 {
                     targetIdx = 0;
                 }
+                
+                gameObjectHit.SetActive(false);
                 targets[targetIdx].SetActive(true);
             }
         }
