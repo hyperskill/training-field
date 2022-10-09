@@ -4,6 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
+        "hyperskill.hs-test-unity.Runtime",
         "InputScripts"
     ],
     "includePlatforms": [],
