@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 
-[Description(""), Category("4")]
+[Description("You just can’t beat the person who never gives up"), Category("4")]
 public class Stage4_Tests
 {
     private GameObject player, camera, secondcamera;

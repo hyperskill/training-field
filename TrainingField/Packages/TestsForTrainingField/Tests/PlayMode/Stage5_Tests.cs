@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 
-[Description(""), Category("5")]
+[Description("Champions keep playing until they get it right"), Category("5")]
 public class Stage5_Tests
 {
     private GameObject crosshair, timer, score, maxScore;

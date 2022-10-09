@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-[Description(""), Category("2")]
+[Description("I may win and I may lose, but I will never be defeated"), Category("2")]
 public class Stage2_Tests
 {
     private GameObject player, camera;

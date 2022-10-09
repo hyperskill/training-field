@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[Description(""), Category("3")]
+[Description("A man who has no imagination has no wings"), Category("3")]
 public class Stage3_Tests
 {
     private GameObject player, camera;

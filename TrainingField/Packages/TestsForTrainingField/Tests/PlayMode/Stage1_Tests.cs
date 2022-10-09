@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using System.Collections.Generic;
 
-[Description(""), Category("1")]
+[Description("If it doesn’t challenge you, it won’t change you."), Category("1")]
 public class Stage1_Tests
 {
     private GameObject player;

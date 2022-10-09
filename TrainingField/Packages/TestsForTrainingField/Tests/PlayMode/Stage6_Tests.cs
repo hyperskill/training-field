@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-[Description(""), Category("6")]
+[Description("It never gets easier, you just get better."), Category("6")]
 public class Stage6_Tests
 {
     private GameObject score;
